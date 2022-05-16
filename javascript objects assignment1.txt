@@ -1,0 +1,278 @@
+1) make a Rectangle class that stores width and Height, make a few instances and print out the proprties. Modify a few of the properties
+ and print out the results again.
+
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h1> hello mahesh</h1>
+        <script>
+            class Rectangle
+{
+    constructor(_width,_height)
+    {
+        this.width = _width;
+        this.height = _height;
+
+    }
+   
+
+    display()
+    {
+        console.log(`area of rectangle ${this.width} and ${this.height} is`);
+    }
+}
+
+//creating a object
+
+var obj1 = new Rectangle(10,20);
+var obj2 = new Rectangle(5,3);
+var obj3 = new Rectangle(10,12);
+var obj4 = new Rectangle(6,2);
+
+obj1.display();
+
+obj2.display();
+
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+=========================================================================================================================================================
+
+
+//2) Adding getArea method using prototype property
+Rectangle.prototype.getArea = function()
+{
+    console.log("Getting Area using prototype property : " +this.width * this.height);
+}
+
+console.log(Rectangle.prototype);
+obj1.getArea(); //calling method which is created using prototype property
+obj2.getArea();
+obj3.getArea();
+pbj4.getArea();
+
+
+==========================================================================================================================================================
+
+//3) Assuming that the Rectangle contructor takes a width and height, why does the following output 20 instead of 200?
+
+//this keyword is used to differentiate between Global var and Local Var.
+
+Rectangle.prototype.getAreaForRect = function(width,height)  //this is because of Global scope and LOcal scope.
+{
+    console.log("Getting Area using prototype property : " +width * height);
+}
+
+console.log(Rectangle.prototype);
+obj1.getAreaForRect(10,20); //calling method which is created using prototype property
+obj2.getAreaForRect(5,3);
+obj3.getAreaForRect(10,12);
+obj4.getAreaForRect(6,2);
+
+============================================================================================================================================================
+
+
+//4) make a variable whose value is an object with firstName and lastName properties
+var obj = {
+    firstName : "mahesh",
+    lastName : "m"
+};
+console.log(obj);
+
+===========================================================================================================================================================
+
+
+//5) try reading the middleName from a property by assigning to it.
+
+var obj1 = {
+    firstName : "mahendar",
+    middleName : "singh",
+    lastName : "dhoni"
+};
+console.log(obj1);
+
+
+
+============================================================================================================================================================
+
+//6)Create a string with what looks like an object with firstName and lastName,use eval() property.
+
+var myString = new String('2 + 2')
+eval(myString.toString());
+console.log(eval(myString.toString()));
+
+
+
+============================================================================================================================================================
+
+//7) Using JSON.parse() method and following the rules of JSON.parse() method.
+/*
+const myString = '{"firstName":"mahesh",  "lastName":"m"}';
+const obj = JSON.parse(myString);
+obj.firstName = eval("(" +obj.firstName+")");*/
+
+============================================================================================================================================================
+
+//8) Creating a Person dynamic object
+function Person(firstName,lastName,age,skills,dateOfbirth,address,married,profession)
+{
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.skills = skills;
+    this.dateOfbirth = dateOfbirth;
+    this.address = address;
+    this.married = married;
+    this.profession = profession;
+}
+
+Person1 = new Person("mahesh","m",25,['python','c#'],"21/03/1997",{city:"Bangalore",pincode:67856},"false","AnalystA4");
+Person2 = new Person("virat","kohli",37,["java","c#"],"12/02/1988",{city:"Delhi",pincode:11766},"false","Cricketer");
+
+console.log(Person1);
+console.log(Person2);
+
+print=function()       //printing the object using Global print method.
+{
+    console.log(Person1);
+    console.log(Person2);
+}();
+
+
+=============================================================================================================================================================
+
+//9) Virat kohli and Anushka sharma program
+
+function Person(firstName,lastName,age,skills,dateOfbirth,address,married,profession)
+{
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.skills = skills;
+    this.dateOfbirth = dateOfbirth;
+    this.address = address;
+    this.married = married;
+    this.profession = profession;
+}
+Kohli = new Person("virat","kohli",37,["java","c#"],"12/02/1988",{city:"Delhi",pincode:11766},"false","Cricketer");
+Anushka = new Person("Anushka",35,["C","html"],"05/06/1990","false","Actress");
+Vamika = new Person("Vamika",03,"01/01/2020","false","home");
+
+var Anushka= Object.create(Kohli); //inheriting the common properties/storing Kohli object in Anushka
+var Vamika = Object.create(Anushka);  //it has become Heirarchical inheritance now--> Kohli is a supermost class 
+
+print = function()
+{
+    console.log(Kohli);
+    console.log(Anushka.lastName);
+    console.log(Anushka.address);
+    console.log(Vamika.lastName);
+    console.log(Vamika.skills);
+    console.log(Vamika.address);
+    console.log(Vamika.firstName);
+}();
+
+
+============================================================================================================================================================
+
+//10) Bank Account Application
+
+function Account(accountNumber,accountHolderName,accountBalance) 
+{
+    this.accountNumber = accountNumber;
+    this.accountHolderName = accountHolderName;
+    this.accountBalance = accountBalance;
+}
+function Savings(isSalary,accountNumber,accountHolderName,accountBalance)
+{
+    this.isSalary = isSalary;
+    this.accountNumber = accountNumber;
+    this.accountHolderName = accountHolderName;
+    this.accountBalance = accountBalance;
+    this.withdraw = function(amount)
+    {
+        if(this.accountBalance > 0 && this.accountBalance < 100)
+        {
+            console.log("Insuffient balance! You have less than 100 rs.");
+        } 
+        if((this.accountBalance >= 100 && this.accountBalance <= 500) && amount === 200)
+        {
+            this.accountBalance = this.accountBalance - amount;
+            console.log("Your money after debiting : " + this.accountBalance);
+        }
+        if((this.accountBalance > 500 && this.accountBalance <= 5000) && amount === 500 || amount === 2000);
+        {
+            this.accountBalance = this.accountBalance - amount;
+            console.log("Your money after debiting : " + this.accountBalance);
+        }
+        if((this.accountBalance > 5000) && amount === 200 || amount === 500 || amount ===2000)
+        {
+            this.accountBalance = this.accountBalance - amount;
+            console.log("Your money after debiting : " + this.accountBalance);
+        }
+        if(this.accountBalance <= 0)
+        {
+            console.log("ATM says! I cant give you the money, Please deposit some amount to withdraw later, Now Please goo!");
+        }
+      
+    };
+    this.getCurrentBalance = function()
+    {
+        console.log("Your current Account balance is : " + this.accountBalance);
+    };
+}
+function Current(odLimit,accountNumber,accountHolderName,accountBalance)
+{
+    this.odLimit = odLimit;
+    this.accountNumber = accountNumber;
+    this.accountHolderName = accountHolderName;
+    this.accountBalance = accountBalance;
+    this.withdraw = function(amount)
+    {
+        if(odLimit > 500)
+        {
+            if((this.accountBalance > 500 && this.accountBalance < 2000) && amount === 200 || amount === 500)
+            {
+                this.accountBalance = this.accountBalance - amount;
+                console.log("Your balance after debiting the money is : " +this.accountBalance);
+            }
+            if((this.accountBalance > 2000) && amount=== 200 || amount === 500 || amount === 2000)
+            {
+                this.accountBalance = this.accountBalance - amount;
+                console.log("Your balance after debiting the money is : " +this.accountBalance);
+            }
+        } 
+        else
+        {  
+            console.log("Your odLimit for Current acocunt is less than 500");
+        }  
+    };
+    this.getCurrentBalance = function()
+    {
+        console.log("Your current Account balance is : " + this.accountBalance);
+    };
+       
+}
+
+var obj1 = new Account(79968654,"mahesh",89897);
+console.log(obj1);
+//var Savings = Object.create(Account); //inheriting the common properties
+//var Current = Object.create(Account); //inheriting the common properties
+
+var objSavings = new Savings("true",799684,"Virat",9972398); //creating Savings object
+console.log(objSavings);
+console.log(objSavings.withdraw(500));
+console.log(objSavings.getCurrentBalance());
+
+var objCurrent = new Current(550,324344,"Raina",545555); //creating Current object
+console.log(objCurrent);
+console.log(objCurrent.withdraw(2000));
+console.log(objCurrent.getCurrentBalance());
